@@ -142,5 +142,5 @@ class Psr4AutoloaderClass
 }
 
 $autoloader = new Psr4AutoloaderClass();
-$autoloader -> addNamespace('Hillel\\Application\\', 'src');
+$autoloader -> addNamespace('Hillel\\Homework\\', 'src');
 $autoloader -> register();
