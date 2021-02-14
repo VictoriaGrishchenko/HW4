@@ -25,8 +25,8 @@ class Currency
             'RUB',
         ];
 
-        $isoCode = strlen(3);
-        if (!strlen($isoCode)) {
+        $isoCode = mb_strlen(3);
+        if (!mb_strlen($isoCode)) {
             throw new InvalidArgumentException('Invalid isoCode');
         } elseif (in_array('$isoCode', $codeNames)) {
             throw new InvalidArgumentException('Invalid code  name!');
@@ -35,19 +35,20 @@ class Currency
 
     public function equal($currencyIso, $currencyIso1)
     {
-        if ($currencyIso === $currencyIso1){
+        if ($currencyIso === $currencyIso1) {
             return true;
-        }
-
-        else {
+        } else {
             return false;
         }
     }
+
+}
+
 $currencyIso = new Currency('USD');
 $currencyIso1 = new Currency('EUR');
 
-$currencyIso = equal($currencyIso, $currencyIso1);
-echo $currencyIso;
+$currencyIso-> equal('$currencyIso', '$currencyIso1');
+
 
 
 
@@ -79,15 +80,32 @@ private $currency;
         return $this->currency;
     }
 
-
     private function setCurrency($currency)
     {
         $this->currency = $currency;
+    }
+    public function equal($a, $b)
+    {
+        if ($a == $b) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function Add ($amount1, $amount2)
+    {
+      return $this -> amount + $this -> amount;
+
     }
 
 }
 
 $money1 = new Money(100, 'USD');
+$money2 = new Money(150, 'USD');
+
+$money1-> equal ($money1, $money2);
+$money1 ->Add($money1,$money2);
 ?>
     <!DOCTYPE html>
     <html lang="en">
