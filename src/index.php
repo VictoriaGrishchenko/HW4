@@ -84,28 +84,34 @@ private $currency;
     {
         $this->currency = $currency;
     }
-    public function equal($a, $b)
+    public function equal(Money $currency)
     {
-        if ($a == $b) {
+        if ($this -> currency == $currency) {
             return true;
         } else {
             return false;
         }
     }
 
-    public function Add ($amount1, $amount2)
+    public function add(Money $money)
     {
-      return $this -> amount + $this -> amount;
+        if ($this->currency == $money->currency) {
+            $amount = $this->amount + $money->amount;
+            $currency = $this->getCurrency();
+        } else throw new \InvalidArgumentException('Currencies are not same');
 
+        $result = new Money($amount, $currency);
+
+        return $result;
     }
-
 }
 
-$money1 = new Money(100, 'USD');
+$money1 = new Money (100, 'USD');
 $money2 = new Money(150, 'USD');
 
-$money1-> equal ($money1, $money2);
-$money1 ->Add($money1,$money2);
+$money1-> equal (new Money(100, 'USD'));
+$money2 -> add( new Money(125,'USD'));
+
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -119,7 +125,6 @@ $money1 ->Add($money1,$money2);
         </style>
     </head>
     <body>
-    <h3>  <p align="center"> <?= $currencyIso ->getIsoCode() ?></p></h3>
-    <h3>  <p align="center"> <?= $money1 ->getAmount() ?>, <?= $money1 ->getCurrency() ?></p></h3>
+    <h3>  <p align="center"> <?= $money2 ->getAmount() ?>, <?= $money2 ->getCurrency() ?></p></h3>
     </body>
     </html>
