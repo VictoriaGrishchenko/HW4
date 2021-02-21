@@ -32,8 +32,8 @@ final class User extends Model
 {
 
     protected $id;
-    protected $name;
-    protected $email;
+    public $name;
+    public $email;
 
     public function save ()
     {
