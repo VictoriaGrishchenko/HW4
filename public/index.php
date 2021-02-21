@@ -15,7 +15,7 @@ abstract class Model
     {
         $sql = 'DELETE FROM . strtolower (static::class) . WHERE id = :id';
     }
-    public function update (DateTime $id)
+    public function update (DateTime $update)
     {
         $this -> update = $update;
         $sql = 'UPDATE user SET name = :name, email = :email WHERE id = :id';
@@ -26,8 +26,6 @@ abstract class Model
         $this -> setCreate =$createdAt;
        $sql = 'INSERT INTO user (id, name, email) VALUES (:id, :name, :email)';
     }
-
-
 }
 
 final class User extends Model
@@ -39,9 +37,9 @@ final class User extends Model
 
     public function save ()
     {
-        if ($this->create()=== true){
+        if ($this->create(DateTime::createFromFormat())=== true){
 
-        } else ($this->update() == true);
+        } else ($this->update(DateTime::createFromFormat()) == true);
 
     }
 }
